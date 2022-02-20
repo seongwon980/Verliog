@@ -22,22 +22,25 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module FullAdder_tb;
+module FourBitAdder_tb;
 
-reg a, b, ci;
-wire s, co;
+reg [3:0] a;
+reg [3:0] b;
 
-FullAdder fa(.a(a), .b(b), .ci(ci), .s(s), .co(co));
+wire [4:0] s;
+
+FourBitAdder fba(.a(a), .b(b), .s(s));
 
 initial begin
   $dumpfile("dump.vcd");
   $dumpvars(1);
-    a = 1'b0; b = 1'b0; ci = 1'b0;
-#10 a = 1'b0; b = 1'b0; ci = 1'b1;
-#10 a = 1'b0; b = 1'b1; ci = 1'b0;
-#10 a = 1'b0; b = 1'b1; ci = 1'b1;
-#10 a = 1'b1; b = 1'b1; ci = 1'b1;
-#50;
+    a = 4'd0; b = 4'd0;
+#10 a = 4'd3; b = 4'd2;
+#10 a = 4'd1; b = 4'd8;
+#10 a = 4'd12; b = 4'd14;
+#10 a = 4'd3; b = 4'd11;
+
+#60;
 end
 
 
